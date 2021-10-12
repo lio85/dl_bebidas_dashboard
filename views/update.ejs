@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <form action="">
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" value=" <%= product.name %> " >
+    
+        <label for="presentation">Presentación</label>
+        <input type="text" id="presentation" name="name" value=" <%= product.presentation %> " >
+    
+        <label for="name">Precio</label>
+        <input type="text" id="name" name="name" value="$ <%= product.price %> " >
+    
+        <label for="name">Categoría</label>
+        <select name="" id="">
+            <option value="">Aperitivos</option>
+        </select>
+    
+        <label for="name">Stock actual</label>
+        <input type="text" value=" <%= product.stock %>" disabled>
+    
+        <label for="name">Imagen actual</label>
+        <img src="" alt="<%= product.name%>">
+        <input type="file">
+    
+        <label for="showing">Exhibir producto</label>
+        <input id="showing" type="radio">
+        <label for="no_showing">Quitar de exhibición</label>
+        <input id="no_showing" type="radio">
+        
+    </form>
+    
+    <button><a href="/">Volver al inicio</a></button>
+    
+    
+</body>
+</html>
+
