@@ -25,6 +25,24 @@ module.exports= {
         return productFounded;
     },
 
+    // devuelve un array con las categorías de producto
+    listByField: function (field) {
+        let products= this.findAll();
+        let listCategories= [];
+        for (let i=0; i<products.length; i++){
+            if(i==0){
+                listCategories.push(products[i][field])
+            } else {
+                var duplicate= listCategories.find(category=> category==products[i][field]);
+                if(!duplicate){ 
+                    listCategories.push(products[i][field])
+                }
+            }
+        }
+        return listCategories.sort();
+    },
+    
+
     // filtro del listado de productos por campo
     findListByField: function (field, value) {
         let products= this.findAll();
@@ -63,3 +81,4 @@ module.exports= {
 };
 
 //console.log(Product.findListByField("price","400"));
+//console.log(Product.listByField('presentation'));

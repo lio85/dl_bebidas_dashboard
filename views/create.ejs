@@ -7,38 +7,43 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="">
+    <form action="/creates" method="GET" enctype="multipart/form-data">
         <label for="name">Nombre</label>
         <input type="text" id="name" name="name">
     
         <label for="presentation">Presentación</label>
-        <input type="text" id="presentation" name="name">
+        <select id="presentation" name="presentation">
+            <option disabled selected>Presentación</option>  
+            <% presentation.forEach(element => { %>
+                <option value="<%=element%>"><%=element%></option>  
+            <% }) %>
+        </select>
+
+        <label for="price">Precio</label>
+        <input type="number" id="price" name="price">
     
-        <label for="name">Precio</label>
-        <input type="text" id="name" name="name">
-    
-        <label for="name">Categoría</label>
-        <select name="" id="">
-            <option value="">Aperitivos</option>
+        <label for="category">Categoría</label>
+        <select id="category" name="category">
+            <option disabled selected>Categoría</option>  
+            <% categories.forEach(element => { %>
+                <option value="<%=element%>"><%=element%></option>  
+            <% }) %>
         </select>
     
-        <label for="name">Stock actual</label>
-        <input type="text">
+        <label for="stock">Stock</label>
+        <input id="stock" type="number" name="stock">
     
-        <label for="name">Imagen actual</label>
-        <img src="" alt="">
-        <input type="file">
+        <label for="image">Imagen</label>
+        <input id="image" type="file" name="image">
     
-        <label for="showing">Exhibir producto</label>
-        <input id="showing" type="radio">
-        <label for="no_showing">Quitar de exhibición</label>
-        <input id="no_showing" type="radio">
+        <label>Exhibir producto<input type="radio" name="showing" value="1" checked></label>
+        <label>Quitar de exhibición<input type="radio" name="showing" value="0"></label>
 
-        <input type="submit" name="" id="" value="Crear">
+        <input type="submit" value="Crear">
         
     </form>
 
     <button><a href="/">Volver al inicio</a></button>
-    
+
 </body>
 </html>

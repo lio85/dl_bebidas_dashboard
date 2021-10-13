@@ -2,31 +2,31 @@
  {
   "id": 1,
   "name": "Red Label",
-  "presentation": "1 litro",
-  "price": 7500,
-  "category": "whiskeys",
-  "stock": 10,
-  "image": "default.png",
-  "showing": 1
+  "presentation": "1 lt.",
+  "price": "7500",
+  "category": "Whiskeys",
+  "stock": "15",
+  "image": "",
+  "showing": "1"
  },
  {
   "id": 2,
   "name": "Ruttini",
-  "presentation": "1 litro",
-  "price": 12000,
-  "category": "vinos",
-  "stock": 3,
-  "image": "default.png",
-  "showing": 1
+  "presentation": "1 lt.",
+  "price": "5000",
+  "category": "Vinos",
+  "stock": "45",
+  "image": "",
+  "showing": "0"
  },
  {
   "id": 3,
-  "name": "Pack Quilmes lata x 6u",
-  "presentation": "354cm",
-  "price": 400,
-  "category": "cervezas",
-  "stock": 28,
-  "image": "default.png",
-  "showing": 1
+  "name": "Pack Quilmes Lata x 6u",
+  "presentation": "269 cm3",
+  "price": "500",
+  "category": "Cervezas",
+  "stock": "40",
+  "image": "",
+  "showing": "1"
  }
 ]
