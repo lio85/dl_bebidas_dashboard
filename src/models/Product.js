@@ -71,6 +71,7 @@ module.exports= {
         return newProduct;
     },
     
+    
     // edicion de un producto
     update: function(id){
         let product= this.findByPK(id);
