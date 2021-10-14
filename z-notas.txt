@@ -1,0 +1,8 @@
+Implementé el paquete express-validator para validar los formularios:
+    npm i express-validator
+
+Implementé el paquete express-session:
+    npm i express-validator
+
+Implementé el paquete bcryptjs:
+    npm i bcryptjs

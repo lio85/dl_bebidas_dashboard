@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <% if (locals.invalidCredentials) { %>
+        <%= invalidCredentials %> 
+    <% } %> 
+    
+    <form action="/" method="post">
+        <div class="form_childs">
+            <label for="user">User</label>
+            <input class="form_inputs" id="user" type="text" name="user" value="<%= locals.old && old.user ? old.user : null %>" > 
+        </div>
+        <div class="error_message_container">
+            <small class="error_message" style="color: red"><%= locals.errors && errors.user ? errors.user.msg : null%></small> 
+        </div>
+
+        <div class="form_childs">
+            <label for="password">Password</label>
+            <input class="form_inputs" id="password" type="password" name="password">
+        </div>
+        <div class="error_message_container">
+            <small class="error_message" style="color:red"><%= locals.errors && errors.password ? errors.password.msg : null%></small>  
+        </div>
+        
+        <input type="submit" value="Ingresar">
+
+    </form>
+    <img src="./images/logo_sin_fondo.png" alt="">
+    <script src="/javascript/login.js"></script>
+</body>
+</html>

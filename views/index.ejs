@@ -7,14 +7,15 @@
         <title>DL_bebidas-Dashboard</title>
     </head>
     <body>
-        <button><a href="/create">Agregar Producto</a></button>
+        <button><a href="/products/create">Agregar Producto</a></button>
         <h2>Categorías:</h2>
         <% if (products.length>0){ %>
             <ul>
                 <% products.forEach(product => { %>
-                    <li><a href="/update/<%= product.id %> "><%= product.name %></a> </li>
+                    <li><a href="/products/update/<%= product.id %> "><%= product.name %></a> </li>
                 <% }) %>
             </ul>
         <% } %>  
+        <button><a href="/">Cerrar sesión</a></button>
     </body>
 </html>

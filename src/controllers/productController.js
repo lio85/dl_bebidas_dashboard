@@ -18,7 +18,7 @@ module.exports= {
     },
     addProduct: (req,res)=> {
         Product.create(req.query)
-        res.redirect ('/');
+        res.redirect ('/products');
     },
     update: (req,res)=> {
         let product= Product.findByPk(req.params.id);
