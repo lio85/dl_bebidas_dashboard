@@ -28,18 +28,5 @@
   "stock": "40",
   "image": "",
   "showing": "1"
- },
- {
-  "id": 4,
-  "name": "Zumuva",
-  "presentation": "1 lt.",
-  "price": "500",
-  "category": "Vinos",
-  "stock": "1000",
-  "image": "",
-  "showing": "0"
- },
- {
-  "id": 5
  }
 ]
