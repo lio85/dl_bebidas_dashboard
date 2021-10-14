@@ -16,8 +16,10 @@ module.exports= {
             if (user){
                 let check= bcrypt.compareSync(req.body.password, user.password)
                 if(check){
-                    req.session.userLogged= true;
-                    return res.redirect('products');
+                    delete user.id;
+                    delete user.password;
+                    req.session.userLogged= user;
+                    return res.redirect('/products');
                 }
                 else {
                     return res.render('login', {invalidCredentials: "El email o la contraseña son incorrectos"});
@@ -28,5 +30,9 @@ module.exports= {
             }
         }
         return res.render('login', {errors: errors.mapped(), old: req.body});
+    },
+    logout: (req,res)=> {
+        req.session.destroy();
+        res.redirect('/')
     }
 }

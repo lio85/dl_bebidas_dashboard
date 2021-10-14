@@ -7,12 +7,14 @@ const indexRoutes= require('./src/routes/indexRoutes');
 const productRoutes= require('./src/routes/productRoutes');
 const endpoint= require('./src/routes/endpointRoutes');
 
-app.use(express.static(path.join(__dirname , './public')));
 app.use(session({
 	secret: 'It is a secret',
 	resave: false,
 	saveUninitialized: false,
 }));
+
+app.use(express.static(path.join(__dirname , './public')));
+
 
 
 app.set ('view engine', 'ejs');

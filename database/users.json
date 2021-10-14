@@ -2,6 +2,8 @@
  {
   "id": 1,
   "user": "admin1@dl-bebidas.com",
+  "name": "Gabriel",
+  "surname": "Villalobos",
   "password": "$2a$10$cVxyClsS0j6feACxXeNlCeM41wHnSO8Giyxkpq5PrRsDSXb8TvstC"
  }
 ]

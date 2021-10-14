@@ -3,7 +3,8 @@ const Product= require('../models/Product');
 module.exports= {
     index: (req,res)=> { 
         let products= Product.findAll();
-        return res.render('index', {products}); 
+        let welcomeMessage= `Usuario: ${req.session.userLogged.name} ${req.session.userLogged.surname}`;
+        return res.render('index', {products, welcomeMessage}); 
     },
     /* detail: (req,res)=> { 
         let product= Product.findByPk(req.params.id);

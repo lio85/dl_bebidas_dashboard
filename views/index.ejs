@@ -7,6 +7,10 @@
         <title>DL_bebidas-Dashboard</title>
     </head>
     <body>
+        <% if (locals.welcomeMessage) { %>
+            <p><%= welcomeMessage %></p> 
+        <% } %> 
+        
         <button><a href="/products/create">Agregar Producto</a></button>
         <h2>Categorías:</h2>
         <% if (products.length>0){ %>
@@ -16,6 +20,6 @@
                 <% }) %>
             </ul>
         <% } %>  
-        <button><a href="/">Cerrar sesión</a></button>
+        <button><a href="/logout">Cerrar sesión</a></button>
     </body>
 </html>
