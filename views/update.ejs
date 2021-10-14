@@ -5,40 +5,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    
-    <form action="">
+    <form action="/products/create" method="POST" enctype="multipart/form-data">
         <label for="name">Nombre</label>
         <input type="text" id="name" name="name" value=" <%= product.name %> " >
     
         <label for="presentation">Presentación</label>
-        <input type="text" id="presentation" name="name" value=" <%= product.presentation %> " >
+        <select name="presentation" id="presentation">
+            <% for(let i=0; i<presentation.length; i++){ %>
+                <% if(presentation[i]==product.presentation){ %>
+                    <option value="<%=presentation[i]%>" selected><%=presentation[i]%></option>
+                <% } else{ %> 
+                    <option value="<%=presentation[i]%>"><%=presentation[i]%></option>
+                <% } %>
+            <% } %> 
+        </select>
     
-        <label for="name">Precio</label>
-        <input type="text" id="name" name="name" value="$ <%= product.price %> " >
+        <label for="price">Precio</label>
+        <input type="number" id="price" name="price" value="<%=product.price %>" >
     
-        <label for="name">Categoría</label>
-        <select name="" id="">
-            <option value="">Aperitivos</option>
+        <label for="category">Categoría</label>
+        <select name="category" id="category">
+            <% for(let i=0; i<categories.length; i++){ %>
+                <% if(categories[i]==product.category){ %>
+                    <option value="<%=categories[i]%>" selected><%=categories[i]%></option>
+                <% } else{ %> 
+                    <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                <% } %>
+            <% } %>            
         </select>
     
         <label for="name">Stock actual</label>
-        <input type="text" value=" <%= product.stock %>" disabled>
+        <input name="current_stock" type="number" value="<%=product.stock%>" disabled>
+
+        <label for="name">Agregar unidades</label>
+        <input name="add_stock" type="number">
     
         <label for="name">Imagen actual</label>
-        <img src="" alt="<%= product.name%>">
-        <input type="file">
+        <span class="up_img">
+            <img src="/images/products/<%= product.image %> " alt="<%= product.name%>">
+        </span>
+
+        <input type="file" name="image">
     
-        <label for="showing">Exhibir producto</label>
-        <input id="showing" type="radio">
-        <label for="no_showing">Quitar de exhibición</label>
-        <input id="no_showing" type="radio">
+        <% if (product.showing==1) { %>
+            <label>Exhibir producto<input type="radio" name="showing" value="1" checked></label>
+            <label>Quitar de exhibición<input type="radio" name="showing" value="0"></label>
+        <% } else { %>
+            <label>Exhibir producto<input type="radio" name="showing" value="1"></label>
+            <label>Quitar de exhibición<input type="radio" name="showing" value="0" checked></label>
+        <% } %> 
 
         <input type="submit" value="Actualizar">
         
     </form>
-    
+
     <button><a href="/products">Volver al inicio</a></button>
     <button><a href="/logout">Cerrar sesión</a></button>
     

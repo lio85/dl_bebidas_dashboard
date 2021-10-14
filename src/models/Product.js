@@ -12,7 +12,7 @@ module.exports= {
     },
 
     // busca un producto pr id
-    findByPk: function(id){
+    findByPK: function(id){
         let products= this.findAll();
         let productFounded= products.find(product=> product.id==id);
         return productFounded;
@@ -42,7 +42,6 @@ module.exports= {
         return listCategories.sort();
     },
     
-
     // filtro del listado de productos por campo
     findListByField: function (field, value) {
         let products= this.findAll();
@@ -71,7 +70,6 @@ module.exports= {
         return newProduct;
     },
     
-    
     // edicion de un producto
     update: function(id){
         let product= this.findByPK(id);
@@ -83,3 +81,4 @@ module.exports= {
 
 //console.log(Product.findListByField("price","400"));
 //console.log(Product.listByField('presentation'));
+//console.log(Product.findByPK(0));

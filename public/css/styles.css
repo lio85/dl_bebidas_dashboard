@@ -1,3 +1,4 @@
+/* login form */
 .error_message_container {
     height: 30px;
 };
@@ -5,6 +6,16 @@
 .error_message {
     color: red;
 };
+/* login form */
+
+/* update product */
+.up_img {
+   
+}
+.up_img img {
+    width: 150px;
+}
+/* update product */
 
 
 

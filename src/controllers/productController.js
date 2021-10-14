@@ -1,6 +1,9 @@
 const Product= require('../models/Product');
 const path= require('path');
 
+let categories= ['Aperitivos', 'Cervezas', 'Combos', 'Gaseosas', 'Vinos', 'Whiskeys'];
+let presentation= ['269 cm3', '473 cm3', '710 cm3', '750 cm3', '1 lt.', '1.5 lts.', '2.25lt.'];
+
 module.exports= {
     index: (req,res)=> { 
         let products= Product.findAll();
@@ -13,9 +16,6 @@ module.exports= {
         return res.render('detail', {product}); 
     }, */
     create: (req,res)=> {
-        let categories= ['Aperitivos', 'Cervezas', 'Combos', 'Gaseosas', 'Vinos', 'Whiskeys'];
-        let presentation= ['269 cm3', '473 cm3', '710 cm3', '750 cm3', '1 lt.', '1.5 lts.', '2.25lt.'];
-
         res.render ('create', {categories, presentation});
     },
     addProduct: (req,res)=> {
@@ -35,13 +35,12 @@ module.exports= {
             ... req.body,
             image: nameProduct
         }
-
         Product.create(newProduct)
         res.redirect('/products');
     },
     update: (req,res)=> {
-        let product= Product.findByPk(req.params.id);
-        res.render ('update', {product: product});
+        let product= Product.findByPK(req.params.id);
+        return res.render ('update', {product, categories, presentation});
     }
     
     
