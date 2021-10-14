@@ -1,10 +1,11 @@
 const Product= require('../models/Product');
+const path= require('path');
 
 module.exports= {
     index: (req,res)=> { 
         let products= Product.findAll();
-        let welcomeMessage= `Usuario: ${req.session.userLogged.name} ${req.session.userLogged.surname}`;
-        return res.render('index', {products, welcomeMessage}); 
+        
+        return res.render('index', {products}); 
     },
     /* detail: (req,res)=> { 
         let product= Product.findByPk(req.params.id);
@@ -18,8 +19,25 @@ module.exports= {
         res.render ('create', {categories, presentation});
     },
     addProduct: (req,res)=> {
-        Product.create(req.query)
-        res.redirect ('/products');
+        let objectImage= req.files.image;
+        let allowed_mimetypes=['image/gif','image/png','image/jpg','image/jpeg','image/bmp','image/webp'];
+        let check= allowed_mimetypes.find(element=> element==objectImage.mimetype);
+        if (!check){
+            return res.send("El formato de archivo que intentas subir no es de tipo imagen");
+        }
+        if(objectImage.size>(1024*200)){
+            return res.send("El peso del archivo que intentas subir supera el límite permitido");
+        }
+        let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
+        let nameProduct= Date.now()+'.'+objectImage.mimetype.slice(6);
+        objectImage.mv(pathDirectoryImages+nameProduct);
+        let newProduct= {
+            ... req.body,
+            image: nameProduct
+        }
+
+        Product.create(newProduct)
+        res.redirect('/products');
     },
     update: (req,res)=> {
         let product= Product.findByPk(req.params.id);

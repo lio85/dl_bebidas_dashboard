@@ -1,5 +1,6 @@
 function adminLogged(req, res, next) {
-	if(!req.session.userLogged){
+	let logged = req.session.userLogged;
+	if(!logged){
 		return res.redirect ("/")
 	}
 	next();

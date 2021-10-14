@@ -8,3 +8,6 @@ Implementé el paquete express-session:
 
 Implementé el paquete bcryptjs:
     npm i bcryptjs
+
+Implementé el paquete fileupload:
+    npm i express-fileupload

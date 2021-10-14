@@ -7,10 +7,6 @@
         <title>DL_bebidas-Dashboard</title>
     </head>
     <body>
-        <% if (locals.welcomeMessage) { %>
-            <p><%= welcomeMessage %></p> 
-        <% } %> 
-        
         <button><a href="/products/create">Agregar Producto</a></button>
         <h2>Categorías:</h2>
         <% if (products.length>0){ %>

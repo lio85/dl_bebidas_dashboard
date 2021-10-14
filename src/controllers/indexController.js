@@ -4,11 +4,11 @@ const bcrypt= require('bcryptjs');
 
 module.exports= {
     login: (req,res)=> {
-        res.render('login');
-    },
+        return res.render('login');
+    }/* ,
     processRegister: (req,res)=> {
         
-    },
+    } */,
     processLogin: (req,res)=> {
         let errors= validationResult(req)
         if(errors.isEmpty()){
@@ -18,7 +18,7 @@ module.exports= {
                 if(check){
                     delete user.id;
                     delete user.password;
-                    req.session.userLogged= user;
+                    req.session.userLogged= true;
                     return res.redirect('/products');
                 }
                 else {
