@@ -3,10 +3,13 @@ const app= express();
 const path= require('path');
 const session= require('express-session');
 const expressFileUpload= require('express-fileupload');
+var cors = require('cors')
 
 const indexRoutes= require('./src/routes/indexRoutes');
 const productRoutes= require('./src/routes/productRoutes');
 const endpoint= require('./src/routes/endpointRoutes');
+
+app.use(cors())
 
 app.use(session({
 	secret: 'It is a secret',
