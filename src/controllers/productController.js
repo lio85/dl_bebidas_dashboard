@@ -50,50 +50,84 @@ module.exports= {
     },
     update: (req,res)=> {
         let product= Product.findByPK(req.params.id);
+        product.oppositeStock= product.stock*-1 
         return res.render ('update', {product, categories, presentation});
     },
     updateProduct: (req,res)=> {
-        let product= Product.findByPK(req.params.id);
-        if(req.files){
-            let objectImage= req.files.image;
-            let allowed_mimetypes=['image/gif','image/png','image/jpg','image/jpeg','image/bmp','image/webp'];
-            let check= allowed_mimetypes.find(element=> element==objectImage.mimetype);
-            if (!check){
-                return res.send("El formato de archivo que intentas subir no es de tipo imagen");
+        var product= Product.findByPK(req.params.id);
+        let errors= validationResult(req)
+        if(errors.isEmpty()){
+            if(req.files){
+                let objectImage= req.files.image;
+                let allowed_mimetypes=['image/gif','image/png','image/jpg','image/jpeg','image/bmp','image/webp'];
+                let check= allowed_mimetypes.find(element=> element==objectImage.mimetype);
+                if (!check){
+                    let errors= {image: {msg: "El formato de archivo que intentas subir no es de tipo imagen"}};
+                    let  productWithId= {
+                        id: product.id,
+                        stock: product.stock,
+                        oppositeStock: product.stock*-1,
+                        image: product.image,
+                        ... req.body
+                    }
+                    return res.render ('update', {errors, product: productWithId, categories, presentation});
+                }
+                if(objectImage.size>(1024*200)){
+                    let errors= {image: {msg: "El peso del archivo que intentas subir supera el límite permitido"}};
+                    let  productWithId= {
+                        id: product.id,
+                        stock: product.stock,
+                        oppositeStock: product.stock*-1,
+                        image: product.image,
+                        ... req.body
+                    }
+                    return res.render ('update', {errors, product: productWithId, categories, presentation});
+                }                
+                let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
+                fs.unlinkSync(path.join(pathDirectoryImages+product.image));  
+                let nameProduct= Date.now()+'.'+objectImage.mimetype.slice(6);
+                objectImage.mv(pathDirectoryImages+nameProduct);
+                var stock= Number(product.stock) + Number(req.body.addStock);
+                if(stock<0){
+                    stock= 0;
+                }
+                var updatedProduct= {
+                    id: product.id,
+                    name: req.body.name,
+                    presentation: req.body.presentation,
+                    price: req.body.price,
+                    category: req.body.category,
+                    stock: stock,
+                    showing: req.body.showing,
+                    image: nameProduct
+                    }
+            } 
+            else {
+                let stock= Number(product.stock) + Number(req.body.addStock);
+                var updatedProduct= {
+                    id: product.id,
+                    name: req.body.name,
+                    presentation: req.body.presentation,
+                    price: req.body.price,
+                    category: req.body.category,
+                    stock: stock,
+                    showing: req.body.showing,
+                    image: product.image
+                }
+                
             }
-            if(objectImage.size>(1024*200)){
-                return res.send("El peso del archivo que intentas subir supera el límite permitido");
-            }
-            let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
-            fs.unlinkSync(path.join(pathDirectoryImages+product.image));  
-            let nameProduct= Date.now()+'.'+objectImage.mimetype.slice(6);
-            objectImage.mv(pathDirectoryImages+nameProduct);
-            let updatedStock= Number(product.stock) + Number(req.body.add_stock);
-            var updatedProduct= {
-                id: product.id,
-                name: req.body.name,
-                presentation: req.body.presentation,
-                price: req.body.price,
-                category: req.body.category,
-                stock: updatedStock,
-                showing: req.body.showing,
-                image: nameProduct
-            }
-        } 
-        else {
-            let updatedStock= Number(product.stock) + Number(req.body.add_stock);
-            var updatedProduct= {
-                id: product.id,
-                name: req.body.name,
-                presentation: req.body.presentation,
-                price: req.body.price,
-                category: req.body.category,
-                stock: updatedStock,
-                showing: req.body.showing,
-                image: product.image
-            }
+            Product.update(updatedProduct);
+            return res.redirect('/products');
         }
-        Product.update(updatedProduct);
-        return res.redirect('/products');
+        else {
+            let  productWithId= {
+                id: product.id,
+                stock: product.stock,
+                oppositeStock: product.stock*-1,
+                image: product.image,
+                ... req.body
+            }
+            return res.render ('update', {errors: errors.mapped(), product: productWithId, categories, presentation});
+        }       
     }   
 }

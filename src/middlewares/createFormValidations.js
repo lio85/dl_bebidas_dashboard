@@ -1,6 +1,6 @@
 const {body} = require('express-validator');
 
-let validationsCreate= [
+let createFormValidations= [
     body('name')
         .notEmpty().withMessage('Tienes que ingresar un nombre para el producto'),
     body('presentation')
@@ -13,4 +13,4 @@ let validationsCreate= [
         .isInt({ min: 0}).withMessage('El stock tiene que ser mayor o igual a cero'),
 ]
 
-module.exports= validationsCreate;
+module.exports= createFormValidations;

@@ -10,7 +10,10 @@
 <body>
     <form action="/products/update/<%=product.id%>?_method=PUT" method="POST" enctype="multipart/form-data">
         <label for="name">Nombre</label>
-        <input type="text" id="name" name="name" value="<%=product.name %> " >
+        <input type="text" id="name" name="name" value="<%=product.name%>">
+        <div class="error_message_container">
+            <small class="error_message" style="color: red"><%=locals.errors&&errors.name?errors.name.msg:null%></small> 
+        </div>
     
         <label for="presentation">Presentación</label>
         <select name="presentation" id="presentation">
@@ -24,7 +27,10 @@
         </select>
     
         <label for="price">Precio</label>
-        <input type="number" id="price" name="price" value="<%=product.price %>" min="0">
+        <input type="number" id="price" name="price" value="<%=product.price %>" min="1">
+        <div class="error_message_container">
+            <small class="error_message" style="color: red"><%=locals.errors&&errors.price?errors.price.msg:null%></small> 
+        </div>
     
         <label for="category">Categoría</label>
         <select name="category" id="category">
@@ -38,15 +44,26 @@
         </select>
     
         <label for="name">Stock actual</label>
-        <input name="current_stock" type="number" value="<%=product.stock%>" disabled>
+        <input name="stock" type="number" value="<%=product.stock%>" disabled>
 
-        <label for="name">Agregar unidades</label>
-        <input name="add_stock" type="number">
+        <label for="name">Agregar o quitar unidades</label>
+        <% if (product.addStock) { %>
+            <input name="addStock" type="number" value="<%=product.addStock%>" min="<%=product.oppositeStock%>">
+        <% } else { %>
+            <input name="addStock" type="number" value="0" min="<%=product.oppositeStock%>">
+        <% } %> 
+        <div class="error_message_container">
+            <small class="error_message" style="color: red"><%=locals.errors&&errors.addStock?errors.addStock.msg:null%></small> 
+        </div>
+
     
         <label for="name">Imagen actual</label>
         <span class="up_img">
             <img src="/images/products/<%= product.image %> " alt="<%= product.name%>">
         </span>
+        <div class="error_message_container">
+            <small class="error_message" style="color: red"><%=locals.errors&&errors.image?errors.image.msg:null%></small> 
+        </div>
 
         <input type="file" name="image">
     
@@ -58,7 +75,7 @@
             <label>Quitar de exhibición<input type="radio" name="showing" value="0" checked></label>
         <% } %> 
 
-        <input type="submit" value="Actualizar">
+        <input type="submit" value="Actualizar producto">
         
     </form>
 

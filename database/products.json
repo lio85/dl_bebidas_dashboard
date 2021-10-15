@@ -5,13 +5,13 @@
   "presentation": "750 cm3",
   "price": "5000",
   "category": "Vinos",
-  "stock": "15",
+  "stock": 100,
   "showing": "1",
   "image": "1634186342937.jpeg"
  },
  {
   "id": 2,
-  "name": "Shneider  ",
+  "name": "Shneider",
   "presentation": "269 cm3",
   "price": "80",
   "category": "Cervezas",
@@ -164,8 +164,8 @@
   "presentation": "750 cm3",
   "price": "470",
   "category": "Aperitivos",
-  "stock": "40",
+  "stock": 35,
   "showing": "1",
-  "image": "1634188722569.jpeg"
+  "image": "1634338193239.jpeg"
  }
 ]
