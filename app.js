@@ -4,6 +4,7 @@ const path= require('path');
 const session= require('express-session');
 const expressFileUpload= require('express-fileupload');
 var cors = require('cors')
+var methodOverride = require('method-override')
 
 const indexRoutes= require('./src/routes/indexRoutes');
 const productRoutes= require('./src/routes/productRoutes');
@@ -16,6 +17,8 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false,
 }));
+
+app.use(methodOverride('_method'))
 
 app.listen(process.env.PORT || 3070, () => console.log('Servidor corriendo en el puerto 3070'));
 

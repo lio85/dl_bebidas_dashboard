@@ -11,11 +11,11 @@
  },
  {
   "id": 2,
-  "name": "Shneider ",
+  "name": "Shneider  ",
   "presentation": "269 cm3",
   "price": "80",
   "category": "Cervezas",
-  "stock": "1000",
+  "stock": 1000,
   "showing": "1",
   "image": "1634186403168.jpeg"
  },
@@ -51,13 +51,13 @@
  },
  {
   "id": 6,
-  "name": "Black Label",
+  "name": "Jonhy Double Black    ",
   "presentation": "1 lt.",
-  "price": "3500",
+  "price": "5000",
   "category": "Whiskeys",
-  "stock": "3",
+  "stock": 300,
   "showing": "1",
-  "image": "1634186615811.jpeg"
+  "image": "1634263066142.jpeg"
  },
  {
   "id": 7,
@@ -71,11 +71,11 @@
  },
  {
   "id": 8,
-  "name": "Trumpeter",
+  "name": "Trumpeter ",
   "presentation": "1 lt.",
   "price": "1800",
   "category": "Vinos",
-  "stock": "25",
+  "stock": 25,
   "showing": "0",
   "image": "1634187123150.jpeg"
  },
@@ -120,21 +120,21 @@
  },
  {
   "id": 13,
-  "name": "Havana Club",
+  "name": "Havana Club   ",
   "presentation": "1 lt.",
   "price": "1700",
   "category": "Aperitivos",
-  "stock": "140",
-  "showing": "1",
+  "stock": 500,
+  "showing": "0",
   "image": "1634187801288.jpeg"
  },
  {
   "id": 14,
-  "name": "Terrazas",
+  "name": "Terrazas ",
   "presentation": "1 lt.",
   "price": "570",
   "category": "Vinos",
-  "stock": "74",
+  "stock": 74,
   "showing": "1",
   "image": "1634188112876.jpeg"
  },
@@ -150,11 +150,11 @@
  },
  {
   "id": 16,
-  "name": "Jameson",
+  "name": "Jameson ",
   "presentation": "1 lt.",
   "price": "1200",
   "category": "Aperitivos",
-  "stock": "47",
+  "stock": 47,
   "showing": "1",
   "image": "1634188503640.jpeg"
  },
@@ -167,15 +167,5 @@
   "stock": "40",
   "showing": "1",
   "image": "1634188722569.jpeg"
- },
- {
-  "id": 18,
-  "name": "Cynar",
-  "presentation": "1 lt.",
-  "price": "1100",
-  "category": "Aperitivos",
-  "stock": "15",
-  "showing": "1",
-  "image": "1634188864971.jpeg"
  }
 ]

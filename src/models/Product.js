@@ -71,14 +71,26 @@ module.exports= {
     },
     
     // edicion de un producto
-    update: function(id){
-        let product= this.findByPK(id);
-        products[id-1].showing=0;
-        return products;
+    update: function(object){
+        let products= this.findAll();
+        products.splice(object.id-1, 1, object);
+        fs.writeFileSync(this.fileName, JSON.stringify(products, null, ' '));
+        return true;
     }
- 
 };
 
 //console.log(Product.findListByField("price","400"));
 //console.log(Product.listByField('presentation'));
 //console.log(Product.findByPK(0));
+
+/* let a= {
+    name: "CCC",
+    presentation: 999,
+    price: 888,
+    category: 777,
+    stock: 666,
+    showing: 000,
+    image: "xxx"
+  }
+
+console.log(Product.update(11,a)); */
