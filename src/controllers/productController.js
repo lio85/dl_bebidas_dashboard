@@ -1,6 +1,7 @@
 const fs= require('fs');
 const Product= require('../models/Product');
 const path= require('path');
+let {validationResult} = require ('express-validator');
 
 let categories= ['Aperitivos', 'Cervezas', 'Combos', 'Gaseosas', 'Vinos', 'Whiskeys'];
 let presentation= ['269 cm3', '473 cm3', '710 cm3', '750 cm3', '1 lt.', '1.5 lts.', '2.25lt.'];
@@ -14,24 +15,38 @@ module.exports= {
         res.render ('create', {categories, presentation});
     },
     createProduct: (req,res)=> {
-        let objectImage= req.files.image;
-        let allowed_mimetypes=['image/gif','image/png','image/jpg','image/jpeg','image/bmp','image/webp'];
-        let check= allowed_mimetypes.find(element=> element==objectImage.mimetype);
-        if (!check){
-            return res.send("El formato de archivo que intentas subir no es de tipo imagen");
+        let errors= validationResult(req)
+        if(errors.isEmpty()){
+            if(req.files){
+                let objectImage= req.files.image;
+                let allowed_mimetypes=['image/gif','image/png','image/jpg','image/jpeg','image/bmp','image/webp'];
+                let check= allowed_mimetypes.find(element=> element==objectImage.mimetype);
+                if (!check){
+                    let errors= {image: {msg: "El formato de archivo que intentas subir no es de tipo imagen"}};
+                    return res.render ('create', {errors, old: req.body, categories, presentation});
+                }
+                if(objectImage.size>(1024*200)){
+                    let errors= {image: {msg: "El peso del archivo que intentas subir supera el límite permitido"}};
+                    return res.render ('create', {errors, old: req.body, categories, presentation});
+                }
+                let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
+                let nameProduct= Date.now()+'.'+objectImage.mimetype.slice(6);
+                objectImage.mv(pathDirectoryImages+nameProduct);
+                let newProduct= {
+                    ... req.body,
+                    image: nameProduct
+                }
+                Product.create(newProduct)
+                return res.redirect('/products');
+            }
+            else {
+                let errors= {image: {msg: "Debes cargar una imagen"}};
+                res.render ('create', {errors, old: req.body, categories, presentation});
+            }   
         }
-        if(objectImage.size>(1024*200)){
-            return res.send("El peso del archivo que intentas subir supera el límite permitido");
-        }
-        let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
-        let nameProduct= Date.now()+'.'+objectImage.mimetype.slice(6);
-        objectImage.mv(pathDirectoryImages+nameProduct);
-        let newProduct= {
-            ... req.body,
-            image: nameProduct
-        }
-        Product.create(newProduct)
-        res.redirect('/products');
+        else {
+            return res.render ('create', {errors: errors.mapped(), old: req.body, categories, presentation});
+        }        
     },
     update: (req,res)=> {
         let product= Product.findByPK(req.params.id);
