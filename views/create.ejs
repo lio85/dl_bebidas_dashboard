@@ -7,11 +7,11 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="/products/create" method="post" enctype="multipart/form-data">
+    <form id="productForms" action="/products/create" method="post" enctype="multipart/form-data">
         <label for="name">Nombre</label>
         <input type="text" id="name" name="name" value="<%=locals.old?old.name:null%>">
         <div class="error_message_container">
-            <small class="error_message" style="color: red"><%=locals.errors&&errors.name?errors.name.msg:null%></small> 
+            <small id="name_error" class="error_message" style="color: red"><%=locals.errors&&errors.name?errors.name.msg:null%></small> 
         </div>
     
         <label for="presentation">Presentación</label>
@@ -25,20 +25,20 @@
                     <%}%>        
                 <%}%>
             <%}else{%>
-                <option disabled selected>Presentación</option> 
+                <option disabled selected value="">Presentación</option> 
                 <%for( let i = 0; i < presentation.length; i++ ){%>
                     <option value="<%=presentation[i]%>"><%=presentation[i]%></option>  
                 <%}%>
             <%}%> 
         </select>
         <div class="error_message_container">
-            <small class="error_message" style="color: red"><%=locals.errors&&errors.presentation?errors.presentation.msg:null%></small> 
+            <small id="presentation_error" class="error_message" style="color: red"><%=locals.errors&&errors.presentation?errors.presentation.msg:null%></small> 
         </div>
 
         <label for="price">Precio</label>
-        <input type="number" id="price" name="price" min="1" value="<%=locals.old?old.price:null%>">
+        <input type="number" id="price" name="price" min="1" value="<%=locals.old?old.price:1%>">
         <div class="error_message_container">
-            <small class="error_message" style="color: red"><%=locals.errors&&errors.price?errors.price.msg:null%></small> 
+            <small id="price_error" class="error_message" style="color: red"><%=locals.errors&&errors.price?errors.price.msg:null%></small> 
         </div>
     
         <label for="category">Categoría</label>
@@ -52,25 +52,25 @@
                     <%}%>        
                 <%}%>
             <%}else{%>
-                <option disabled selected>Categoría</option> 
+                <option disabled selected value="">Categoría</option> 
                 <%for( let i = 0; i < categories.length; i++ ){%>
                     <option value="<%=categories[i]%>"><%=categories[i]%></option>  
                 <%}%>
             <%}%> 
         </select>
         <div class="error_message_container">
-            <small class="error_message" style="color: red"><%=locals.errors&&errors.category?errors.category.msg:null%></small> 
+            <small id="category_error" class="error_message" style="color: red"><%=locals.errors&&errors.category?errors.category.msg:null%></small> 
         </div>
     
         <label for="stock">Stock</label>
-        <input id="stock" type="number" name="stock" min="0" value="<%=locals.old?old.stock:null%>">
+        <input id="stock" type="number" name="stock" min="0" value="<%=locals.old?old.stock:0%>">
         <div class="error_message_container">
-            <small class="error_message" style="color: red"><%=locals.errors&&errors.stock?errors.stock.msg:null%></small> 
+            <small id="stock_error" class="error_message" style="color: red"><%=locals.errors&&errors.stock?errors.stock.msg:null%></small> 
         </div>
     
-        <input type="file" name="image">
+        <input id="image" type="file" name="image">
         <div class="error_message_container">
-            <small class="error_message" style="color: red"><%=locals.errors&&errors.image?errors.image.msg:null%></small> 
+            <small id="image_error" class="error_message" style="color: red"><%=locals.errors&&errors.image?errors.image.msg:null%></small> 
         </div>
     
         <%if(locals.old && old.showing==0){%>
@@ -87,6 +87,6 @@
 
     <button><a href="/products">Volver al inicio</a></button>
     <button><a href="/logout">Cerrar sesión</a></button>
-
+    <script src="/javascript/create.js"></script>
 </body>
 </html>

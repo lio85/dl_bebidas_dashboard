@@ -26,7 +26,7 @@ module.exports= {
                     return res.render ('create', {errors, old: req.body, categories, presentation});
                 }
                 if(objectImage.size>(1024*200)){
-                    let errors= {image: {msg: "El peso del archivo que intentas subir supera el límite permitido"}};
+                    let errors= {image: {msg: "El peso/tamaño de la imagen que intentas subir supera el límite permitido"}};
                     return res.render ('create', {errors, old: req.body, categories, presentation});
                 }
                 let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
@@ -40,7 +40,7 @@ module.exports= {
                 return res.redirect('/products');
             }
             else {
-                let errors= {image: {msg: "Debes cargar una imagen"}};
+                let errors= {image: {msg: "Tienes que seleccionar una imagen"}};
                 res.render ('create', {errors, old: req.body, categories, presentation});
             }   
         }

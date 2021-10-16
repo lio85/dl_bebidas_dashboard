@@ -15,7 +15,7 @@
     <form id="loginForm" action="/" method="post">
         <div class="form_childs">
             <label for="user">User</label>
-            <input class="form_inputs" id="user" type="" name="user" value="<%= locals.old && old.user ? old.user : null %>" > 
+            <input class="form_inputs" id="user" type="email" name="user" value="<%= locals.old && old.user ? old.user : null %>" > 
         </div>
         <div class="error_message_container">
             <small id="user_error" class="error_message" style="color: red"><%= locals.errors && errors.user ? errors.user.msg : null%></small> 
