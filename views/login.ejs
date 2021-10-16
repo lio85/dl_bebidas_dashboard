@@ -12,13 +12,13 @@
         <%= invalidCredentials %> 
     <% } %> 
     
-    <form action="/" method="post">
+    <form id="loginForm" action="/" method="post">
         <div class="form_childs">
             <label for="user">User</label>
-            <input class="form_inputs" id="user" type="text" name="user" value="<%= locals.old && old.user ? old.user : null %>" > 
+            <input class="form_inputs" id="user" type="" name="user" value="<%= locals.old && old.user ? old.user : null %>" > 
         </div>
         <div class="error_message_container">
-            <small class="error_message" style="color: red"><%= locals.errors && errors.user ? errors.user.msg : null%></small> 
+            <small id="user_error" class="error_message" style="color: red"><%= locals.errors && errors.user ? errors.user.msg : null%></small> 
         </div>
 
         <div class="form_childs">
@@ -26,7 +26,7 @@
             <input class="form_inputs" id="password" type="password" name="password">
         </div>
         <div class="error_message_container">
-            <small class="error_message" style="color:red"><%= locals.errors && errors.password ? errors.password.msg : null%></small>  
+            <small id="password_error" class="error_message" style="color:red"><%= locals.errors && errors.password ? errors.password.msg : null%></small>  
         </div>
         
         <input type="submit" value="Ingresar">

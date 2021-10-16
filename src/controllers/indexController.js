@@ -22,11 +22,11 @@ module.exports= {
                     return res.redirect('/products');
                 }
                 else {
-                    return res.render('login', {invalidCredentials: "El email o la contraseña son incorrectos"});
+                    return res.render('login', {invalidCredentials: "Credenciales inválidas"});
                 }
             }
             else {
-                return res.render('login', {invalidCredentials: "El email o la contraseña son incorrectos"});
+                return res.render('login', {invalidCredentials: "Credenciales inválidas"});
             }
         }
         return res.render('login', {errors: errors.mapped(), old: req.body});
