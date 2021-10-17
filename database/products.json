@@ -5,9 +5,9 @@
   "presentation": "750 cm3",
   "price": "5000",
   "category": "Vinos",
-  "stock": 100,
+  "stock": 1750,
   "showing": "1",
-  "image": "1634186342937.jpeg"
+  "image": "1634505862693.jpeg"
  },
  {
   "id": 2,
@@ -167,5 +167,15 @@
   "stock": 35,
   "showing": "1",
   "image": "1634338193239.jpeg"
+ },
+ {
+  "id": 18,
+  "name": "Jhony Walker Black Label",
+  "presentation": "1 lt.",
+  "price": "8500",
+  "category": "Whiskeys",
+  "stock": 70,
+  "showing": "1",
+  "image": "1634417594048.jpeg"
  }
 ]

@@ -1,6 +1,6 @@
-var productForms= document.querySelector('#productForms');
+var createProductForm= document.querySelector('#createProductForm');
 
-productForms.addEventListener("submit", function(e){
+createProductForm.addEventListener("submit", function(e){
     e.preventDefault();
     validations();
 })
@@ -64,12 +64,12 @@ function validations(){
         if (!check){
             errors= true;
             image_error.textContent="El formato de archivo que intentas subir no es de tipo imagen";
-        } else if (image.files[0].size>(1024*2)){
+        } else if (image.files[0].size>(1024*200)){
             errors= true;
             image_error.textContent="El peso/tamaño de la imagen que intentas subir supera el límite permitido";
         }
     }
     if(!errors){
-        productForms.submit();
+        createProductForm.submit();
     }
 }

@@ -2,6 +2,7 @@ const fs= require('fs');
 const Product= require('../models/Product');
 const path= require('path');
 let {validationResult} = require ('express-validator');
+const { EWOULDBLOCK } = require('constants');
 
 let categories= ['Aperitivos', 'Cervezas', 'Combos', 'Gaseosas', 'Vinos', 'Whiskeys'];
 let presentation= ['269 cm3', '473 cm3', '710 cm3', '750 cm3', '1 lt.', '1.5 lts.', '2.25lt.'];
@@ -55,69 +56,109 @@ module.exports= {
     },
     updateProduct: (req,res)=> {
         var product= Product.findByPK(req.params.id);
-        let errors= validationResult(req)
+        let errors= validationResult(req);
+
         if(errors.isEmpty()){
-            if(req.files){
-                let objectImage= req.files.image;
-                let allowed_mimetypes=['image/gif','image/png','image/jpg','image/jpeg','image/bmp','image/webp'];
-                let check= allowed_mimetypes.find(element=> element==objectImage.mimetype);
-                if (!check){
-                    let errors= {image: {msg: "El formato de archivo que intentas subir no es de tipo imagen"}};
-                    let  productWithId= {
-                        id: product.id,
-                        stock: product.stock,
-                        oppositeStock: product.stock*-1,
-                        image: product.image,
-                        ... req.body
-                    }
-                    return res.render ('update', {errors, product: productWithId, categories, presentation});
-                }
-                if(objectImage.size>(1024*200)){
-                    let errors= {image: {msg: "El peso del archivo que intentas subir supera el límite permitido"}};
-                    let  productWithId= {
-                        id: product.id,
-                        stock: product.stock,
-                        oppositeStock: product.stock*-1,
-                        image: product.image,
-                        ... req.body
-                    }
-                    return res.render ('update', {errors, product: productWithId, categories, presentation});
-                }                
-                let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
-                fs.unlinkSync(path.join(pathDirectoryImages+product.image));  
-                let nameProduct= Date.now()+'.'+objectImage.mimetype.slice(6);
-                objectImage.mv(pathDirectoryImages+nameProduct);
-                var stock= Number(product.stock) + Number(req.body.addStock);
-                if(stock<0){
-                    stock= 0;
-                }
-                var updatedProduct= {
+
+            if(req.body.addStock && isNaN(Number(req.body.addStock)) || req.body.addStock==''){
+                errors= {addStock: {msg: 'El stock tiene que ser un valor numérico'}};
+                let  productWithId= {
                     id: product.id,
-                    name: req.body.name,
-                    presentation: req.body.presentation,
-                    price: req.body.price,
-                    category: req.body.category,
-                    stock: stock,
-                    showing: req.body.showing,
-                    image: nameProduct
-                    }
-            } 
-            else {
-                let stock= Number(product.stock) + Number(req.body.addStock);
-                var updatedProduct= {
-                    id: product.id,
-                    name: req.body.name,
-                    presentation: req.body.presentation,
-                    price: req.body.price,
-                    category: req.body.category,
-                    stock: stock,
-                    showing: req.body.showing,
-                    image: product.image
+                    stock: product.stock,
+                    addStock: req.body.addStock,
+                    oppositeStock: product.stock*-1,
+                    image: product.image,
+                    ... req.body
                 }
-                
+                return res.render ('update', {errors, product: productWithId, categories, presentation});
+
+            } else {
+
+                if(req.files){
+                    let objectImage= req.files.image;
+                    let allowed_mimetypes=['image/gif','image/png','image/jpg','image/jpeg','image/bmp','image/webp'];
+                    let check= allowed_mimetypes.find(element=> element==objectImage.mimetype);
+                    if (!check){
+                        let errors= {image: {msg: "El formato de archivo que intentas subir no es de tipo imagen"}};
+                        let  productWithId= {
+                            id: product.id,
+                            stock: product.stock,
+                            oppositeStock: product.stock*-1,
+                            image: product.image,
+                            ... req.body
+                        }
+                        return res.render ('update', {errors, product: productWithId, categories, presentation});
+                    }
+                    if(objectImage.size>(1024*200)){
+                        let errors= {image: {msg: "El peso del archivo que intentas subir supera el límite permitido"}};
+                        let  productWithId= {
+                            id: product.id,
+                            stock: product.stock,
+                            oppositeStock: product.stock*-1,
+                            image: product.image,
+                            ... req.body
+                        }
+                        return res.render ('update', {errors, product: productWithId, categories, presentation});
+                    }                
+                    let pathDirectoryImages= path.join(__dirname,'../../public/images/products/');
+                    fs.unlinkSync(path.join(pathDirectoryImages+product.image));  
+                    let nameProduct= Date.now()+'.'+objectImage.mimetype.slice(6);
+                    objectImage.mv(pathDirectoryImages+nameProduct);
+
+                    var stock;
+                    if (req.body.update_stock){
+                        if(req.body.update_stock==0){
+                            stock= Number(product.stock) - Number(req.body.addStock);
+                            if(stock<0){
+                                stock= 0;
+                            }
+                        } else {
+                            stock= Number(product.stock) + Number(req.body.addStock);
+                        }
+                    } else {
+                        stock= product.stock;
+                    }
+
+                    var updatedProduct= {
+                        id: product.id,
+                        name: req.body.name,
+                        presentation: req.body.presentation,
+                        price: req.body.price,
+                        category: req.body.category,
+                        stock: stock,
+                        showing: req.body.showing,
+                        image: nameProduct
+                        }
+                } 
+                else {
+                    //var stock;
+                    if (req.body.update_stock){
+                        if(req.body.update_stock==0){
+                            stock= Number(product.stock) - Number(req.body.addStock);
+                            if(stock<0){
+                                stock= 0;
+                            }
+                        } else {
+                            stock= Number(product.stock) + Number(req.body.addStock);
+                        }
+                    } else {
+                        stock= product.stock;
+                    }
+                    var updatedProduct= {
+                        id: product.id,
+                        name: req.body.name,
+                        presentation: req.body.presentation,
+                        price: req.body.price,
+                        category: req.body.category,
+                        stock: stock,
+                        showing: req.body.showing,
+                        image: product.image
+                    }
+                    
+                }
+                Product.update(updatedProduct);
+                return res.redirect('/products');
             }
-            Product.update(updatedProduct);
-            return res.redirect('/products');
         }
         else {
             let  productWithId= {

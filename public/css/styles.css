@@ -9,10 +9,17 @@
 /* login form */
 
 /* update product */
-.up_img {
+
+.up-update_stock {
+    background-color: salmon;
+    display: flex;
+    flex-direction: column;
+}
+
+.up-img {
    
 }
-.up_img img {
+.up-img img {
     width: 150px;
 }
 /* update product */
