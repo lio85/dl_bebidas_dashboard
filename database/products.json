@@ -177,5 +177,145 @@
   "stock": 70,
   "showing": "1",
   "image": "1634417594048.jpeg"
+ },
+ {
+  "id": 19,
+  "name": "Corona",
+  "presentation": "473 cm3",
+  "price": "225",
+  "category": "Cervezas",
+  "stock": "80",
+  "showing": "1",
+  "image": "1635626927553.jpeg"
+ },
+ {
+  "id": 20,
+  "name": "Heinneken",
+  "presentation": "473 cm3",
+  "price": "280",
+  "category": "Cervezas",
+  "stock": "150",
+  "showing": "1",
+  "image": "1635627038824.jpeg"
+ },
+ {
+  "id": 21,
+  "name": "Nicasia",
+  "presentation": "750 cm3",
+  "price": "430",
+  "category": "Vinos",
+  "stock": "40",
+  "showing": "1",
+  "image": "1635627169817.jpeg"
+ },
+ {
+  "id": 22,
+  "name": "Pyros",
+  "presentation": "1 lt.",
+  "price": "585",
+  "category": "Vinos",
+  "stock": "25",
+  "showing": "1",
+  "image": "1635627221498.jpeg"
+ },
+ {
+  "id": 23,
+  "name": "Trapiche",
+  "presentation": "750 cm3",
+  "price": "700",
+  "category": "Vinos",
+  "stock": "15",
+  "showing": "1",
+  "image": "1635627263973.jpeg"
+ },
+ {
+  "id": 24,
+  "name": "Green Label",
+  "presentation": "1 lt.",
+  "price": "1450",
+  "category": "Whiskeys",
+  "stock": "12",
+  "showing": "1",
+  "image": "1635627494504.jpeg"
+ },
+ {
+  "id": 25,
+  "name": "Jagermeister",
+  "presentation": "1 lt.",
+  "price": "2000",
+  "category": "Whiskeys",
+  "stock": "14",
+  "showing": "1",
+  "image": "1635627547203.jpeg"
+ },
+ {
+  "id": 26,
+  "name": "Jhony Walker Gold Label",
+  "presentation": "1 lt.",
+  "price": "3500",
+  "category": "Whiskeys",
+  "stock": "5",
+  "showing": "1",
+  "image": "1635627643994.jpeg"
+ },
+ {
+  "id": 27,
+  "name": "Coca Cola",
+  "presentation": "2.25lt.",
+  "price": "150",
+  "category": "Gaseosas",
+  "stock": "45",
+  "showing": "1",
+  "image": "1635627786153.webp"
+ },
+ {
+  "id": 28,
+  "name": "Sprite",
+  "presentation": "2.25lt.",
+  "price": "130",
+  "category": "Gaseosas",
+  "stock": "30",
+  "showing": "1",
+  "image": "1635627870836.webp"
+ },
+ {
+  "id": 29,
+  "name": "Schweppes",
+  "presentation": "1.5 lts.",
+  "price": "100",
+  "category": "Gaseosas",
+  "stock": "70",
+  "showing": "1",
+  "image": "1635628069792.webp"
+ },
+ {
+  "id": 30,
+  "name": "Cunnington Cola",
+  "presentation": "2.25lt.",
+  "price": "1",
+  "category": "Gaseosas",
+  "stock": "90",
+  "showing": "1",
+  "image": "1635628117527.webp"
+ },
+ {
+  "id": 31,
+  "name": "Pepsi",
+  "presentation": "473 cm3",
+  "price": "70",
+  "category": "Gaseosas",
+  "stock": "150",
+  "showing": "1",
+  "image": "1635628148925.webp"
+ },
+ {
+  "id": 32,
+  "name": "Fanta naranja",
+  "presentation": "1.5 lts.",
+  "price": "80",
+  "category": "Gaseosas",
+  "stock": "50",
+  "showing": "1",
+  "image": "1635628179633.webp"
  }
 ]

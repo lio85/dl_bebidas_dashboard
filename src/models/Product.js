@@ -1,10 +1,18 @@
 const fs= require('fs');
+const path= require('path');
 
-//const Product= {
+let productListPath = path.join(__dirname, '../../database/products.json');
+//let datos = fs.readFileSync (productListPath, 'utf-8'); 
+
+
+//const product= {
 module.exports= {
 
     // path de acceso a la base de datos
-    fileName: './database/products.json',
+    
+    //fileName: './database/products.json',
+    fileName: productListPath,
+
 
     // muestra todos los productos
     findAll: function(){
@@ -51,6 +59,54 @@ module.exports= {
         return newArray;
     },
 
+
+
+    listItemsByCategory: function(){
+        let products= this.findAll();
+        let aperitivos= products.filter(product=> {
+            return product.category=='Aperitivos';
+        })
+        let cervezas= products.filter(product=> {
+            return product.category=='Cervezas';
+        })
+        let gaseosas= products.filter(product=> {
+            return product.category=='Gaseosas';
+        })
+        let vinos= products.filter(product=> {
+            return product.category=='Vinos';
+        })
+        let whiskeys= products.filter(product=> {
+            return product.category=='Whiskeys';
+        })
+        const object= {
+            aperitivos: {
+                items: aperitivos.length,
+                listItems: aperitivos
+            },
+            cervezas: {
+                items: cervezas.length,
+                listItems: cervezas
+            },
+            gaseosas: {
+                items: gaseosas.length,
+                listItems: gaseosas
+            },
+            vinos: {
+                items: vinos.length,
+                listItems: vinos
+            },
+            whiskeys: {
+                items: whiskeys.length,
+                listItems: whiskeys
+            }
+        }
+        return object;
+    },
+
+
+
+
+
     // creacion de producto
     create: function (object) {
         let products= this.findAll(); 
@@ -94,3 +150,6 @@ module.exports= {
   }
 
 console.log(Product.update(11,a)); */
+
+//console.log(product.findAll());
+//console.log(product.listItemsByCategory());

@@ -14,17 +14,15 @@ module.exports= {
         }) 
     },
     oneProduct: (req,res)=> {
-        let product= Product.findByPk(req.params.id);
+        let product= Product.findByPK(req.params.id);
         return res.json({ 
             product: product, 
         }) 
     },
+
     byCategory: (req,res)=> {
-        let products= Product.findByCategory(req.params.category);
-        return res.json({ 
-            quantityProducts: products.length,
-            listProducts: products 
-        }) 
+        let object= Product.listItemsByCategory();
+        return res.json(object) 
     }
     
 }
