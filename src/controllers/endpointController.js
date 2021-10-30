@@ -22,7 +22,27 @@ module.exports= {
 
     byCategory: (req,res)=> {
         let object= Product.listItemsByCategory();
-        return res.json(object) 
+        for (item of object.aperitivos.listItems){
+            item.image= `https://dl-bebidas-dashboard.herokuapp.com/images/products/${item.image}`
+        }
+        for (item of object.cervezas.listItems){
+            item.image= `https://dl-bebidas-dashboard.herokuapp.com/images/products/${item.image}`
+        }
+        for (item of object.gaseosas.listItems){
+            item.image= `https://dl-bebidas-dashboard.herokuapp.com/images/products/${item.image}`
+        }
+        for (item of object.vinos.listItems){
+            item.image= `https://dl-bebidas-dashboard.herokuapp.com/images/products/${item.image}`
+        }
+        for (item of object.whiskeys.listItems){
+            item.image= `https://dl-bebidas-dashboard.herokuapp.com/images/products/${item.image}`
+        }
+        return res.json(object); 
+
+
+
     }
+
+
     
 }
