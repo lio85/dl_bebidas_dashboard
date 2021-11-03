@@ -266,7 +266,7 @@
   "category": "Gaseosas",
   "stock": "45",
   "showing": "1",
-  "image": "1635627786153.webp"
+  "image": "1635982964453.jpeg"
  },
  {
   "id": 28,
@@ -276,7 +276,7 @@
   "category": "Gaseosas",
   "stock": "30",
   "showing": "1",
-  "image": "1635627870836.webp"
+  "image": "1635983004719.jpeg"
  },
  {
   "id": 29,
@@ -286,7 +286,7 @@
   "category": "Gaseosas",
   "stock": "70",
   "showing": "1",
-  "image": "1635628069792.webp"
+  "image": "1635983037651.jpeg"
  },
  {
   "id": 30,
@@ -296,7 +296,7 @@
   "category": "Gaseosas",
   "stock": "90",
   "showing": "1",
-  "image": "1635628117527.webp"
+  "image": "1635983184351.jpeg"
  },
  {
   "id": 31,
@@ -306,7 +306,7 @@
   "category": "Gaseosas",
   "stock": "150",
   "showing": "1",
-  "image": "1635628148925.webp"
+  "image": "1635983088964.jpeg"
  },
  {
   "id": 32,
@@ -316,6 +316,6 @@
   "category": "Gaseosas",
   "stock": "50",
   "showing": "1",
-  "image": "1635628179633.webp"
+  "image": "1635983132264.jpeg"
  }
 ]
