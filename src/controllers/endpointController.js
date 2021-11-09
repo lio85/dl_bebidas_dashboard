@@ -38,10 +38,17 @@ module.exports= {
             item.image= `https://dl-bebidas-dashboard.herokuapp.com/images/products/${item.image}`
         }
         return res.json(object); 
+    },
 
-
-
+    prueba: (req,res)=> {
+        let object= {
+            nombre: "Lionel",
+            edad: 36
+        };
+        
+        return res.json(object); 
     }
+
 
 
     
